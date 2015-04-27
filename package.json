@@ -1,0 +1,23 @@
+{
+  "name": "node-valid",
+  "version": "1.0.0",
+  "description": "Powerful validation library for NodeJS",
+  "main": "validate.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "node ./tests/tests.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/donvercety/node-valid.git"
+  },
+  "keywords": [
+    "validate",
+    "valid",
+    "validation"
+  ],
+  "author": "Tommy Vercety <donvercety@gmail.com> (donvercety.biz)",
+  "license": "ISC"
+}
