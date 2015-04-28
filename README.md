@@ -1,9 +1,7 @@
-This repo is for distribution on npm. The source for this module is in the main [node-valid](https://github.com/donvercety/node-valid). Please file issues and pull requests against that repo.
-
 ### Install
     npm install node-valid
 
-# Example
+### Example
 
 ```js
 var valid = require('validate'); v = new valid();
