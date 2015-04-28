@@ -4,13 +4,13 @@
 ### Example
 
 ```js
-var valid = require('validate'); v = new valid();
+var valid = require('node-valid'); v = new valid();
 
 var user = 'biguser001', pass = 'Str0ngP@ss';
 
 // validating user and give rules
 v.validate(user); 
-v.required().minLength(8).isAlphaDash()noWhitespace();
+v.required().minLength(8).isAlphaDash().noWhitespace();
 
 // validating pass and give rules directly
 v.validate(pass).required().minLength(8);
