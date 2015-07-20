@@ -9,7 +9,7 @@ var valid = require('node-valid'); v = new valid();
 var user = 'biguser001', pass = 'Str0ngP@ss', match = 'Str0ngP@ss';
 
 // user validation
-v.validate(name, 'user');
+v.validate(user, 'user');
 v.required().minLength(4).noWhitespace();
 
 // pass validation, even better single line
