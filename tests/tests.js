@@ -71,3 +71,22 @@ check(v.validate(page).isEmail().isValid() === false, 'isEmail');
 check(v.validate('n@ai').isEmail().isValid() === false, 'isEmail');
 
 console.log(ass.getStatistics());
+
+
+// console.log('Extra tests, for error reporting');
+// v.validate(phone).isIP();
+// v.validate(pass).isEmail();
+// v.validate(email).isUrl();
+// v.validate(name).noWhitespace();
+// v.validate(page).isBase64();
+// v.validate(page).isEmail();
+// v.validate(id).isAlpha();
+// v.validate(ip).isAlphaNumeric();
+// v.validate(ip).isAlphaDash();
+// v.validate(user, 'user').minLength(18);
+// v.validate(crazy, 'crazy').maxLength(11);
+// v.validate(phone, 'phone').exactLength(6);
+// v.validate(age, 'age').min(21);
+// v.validate(age, 'age').max(11);
+// v.isValid();
+// console.log(v.getErrors());
