@@ -122,14 +122,14 @@ module.exports = (function() {
 
     Validate.prototype.max = function(value) {
         this.isInteger(value);
-        if(this.value >= value) {
+        if(this.value > value) {
             errors.push(msg(messages.max, value, this.key)); }
         return this;
     };
 
     Validate.prototype.min = function(value) {
         this.isInteger(value);
-        if(this.value <= value) {
+        if(this.value < value) {
             errors.push(msg(messages.min, value, this.key)); }
         return this;
     };
@@ -142,19 +142,19 @@ module.exports = (function() {
     };
 
     Validate.prototype.maxLength = function(value) {
-        if(this.value === null || this.value.toString().length > value) {
+        if(this.value === null || this.value === undefined || this.value.toString().length > value) {
             errors.push(msg(messages.maxLength, value, this.key)); }
         return this;
     };
 
     Validate.prototype.minLength = function(value) {
-        if(this.value === null || this.value.toString().length < value) {
+        if(this.value === null || this.value === undefined || this.value.toString().length < value) {
             errors.push(msg(messages.minLength, value, this.key)); }
         return this;
     };
 
     Validate.prototype.exactLength = function(value) {
-        if(this.value === null || this.value.toString().length != value) {
+        if(this.value === null || this.value === undefined || this.value.toString().length != value) {
             errors.push(msg(messages.exactLength, value, this.key)); }
         return this;
     };
