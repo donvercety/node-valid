@@ -38,8 +38,8 @@ if(v.isValid()) {
 - minLength(val)
 - exactLength(val)
 - required()
-- match(val) alias matches();
-- noMatch(val),
+- match(val | array) alias matches(val | array);
+- noMatch(val | array),
 - isAlpha()
 - isNumeric()
 - isAlphaNumeric()
