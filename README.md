@@ -51,7 +51,7 @@ if(v.isValid()) {
 - isEmail()
 - isUrl()
 - noWhitespace()
-- isJson();
+- isJson()
 
 **!important:** `min()`, `max()` and `exact()` are for checking integers.  
 **!important:** `maxLength()`, `minLength()` and `exactLength()` are for checking character lenght.
