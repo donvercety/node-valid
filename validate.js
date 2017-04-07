@@ -36,7 +36,8 @@ module.exports = (function() {
         exactLength: '{1} must be exactly {0} characters in length',
 
         required: 'required {1} is empty or undefined',
-        matches: '{1} does not match the value: {0}',
+        match: '{1} does not match the value: {0}',
+        noMatch: '{1} must not match: {0}',
 
         isAlpha: '{1} must contain only alphabetical characters',
         isNumeric: '{1} must contain only numbers',
@@ -52,6 +53,13 @@ module.exports = (function() {
 
         noWhitespace: 'must not use whitespace character in {1}'
     };
+
+    /**
+     * Returns the variable name as a string.
+     */
+    function varToString(varObj) {
+        return Object.keys(varObj)[0];
+    }
 
     /**
      * Crates the error message
@@ -122,118 +130,146 @@ module.exports = (function() {
 
     Validate.prototype.max = function(value) {
         this.isInteger(value);
-        if(this.value > value) {
-            errors.push(msg(messages.max, value, this.key)); }
+        if (this.value > value) {
+            errors.push(msg(messages.max, value, this.key));
+        }
         return this;
     };
 
     Validate.prototype.min = function(value) {
         this.isInteger(value);
-        if(this.value < value) {
-            errors.push(msg(messages.min, value, this.key)); }
+        if (this.value < value) {
+            errors.push(msg(messages.min, value, this.key));
+        }
         return this;
     };
 
     Validate.prototype.exact = function(value) {
         this.isInteger(value);
-        if(this.value == value) {
-            errors.push(msg(messages.exact, value, this.key)); }
+        if (this.value == value) {
+            errors.push(msg(messages.exact, value, this.key));
+        }
         return this;
     };
 
     Validate.prototype.maxLength = function(value) {
-        if(this.value === null || this.value === undefined || this.value.toString().length > value) {
-            errors.push(msg(messages.maxLength, value, this.key)); }
+        if (this.value === null || this.value === undefined || this.value.toString().length > value) {
+            errors.push(msg(messages.maxLength, value, this.key));
+        }
         return this;
     };
 
     Validate.prototype.minLength = function(value) {
-        if(this.value === null || this.value === undefined || this.value.toString().length < value) {
-            errors.push(msg(messages.minLength, value, this.key)); }
+        if (this.value === null || this.value === undefined || this.value.toString().length < value) {
+            errors.push(msg(messages.minLength, value, this.key));
+        }
         return this;
     };
 
     Validate.prototype.exactLength = function(value) {
-        if(this.value === null || this.value === undefined || this.value.toString().length != value) {
-            errors.push(msg(messages.exactLength, value, this.key)); }
+        if (this.value === null || this.value === undefined || this.value.toString().length != value) {
+            errors.push(msg(messages.exactLength, value, this.key));
+        }
         return this;
     };
 
     Validate.prototype.required = function() {
-        if(this.value === null || this.value === '' || this.value === undefined) {
-            errors.push(msg(messages.required, null, this.key)); }
+        if (this.value === null || this.value === '' || this.value === undefined) {
+            errors.push(msg(messages.required, null, this.key));
+        }
         return this;
     };
 
-    Validate.prototype.matches = function(value) {
-        if(this.value !== value) {
-            errors.push(msg(messages.matches, value, this.key)); }
+    Validate.prototype.match = function(value) {
+        if (this.value !== value) {
+            errors.push(msg(messages.match, value, this.key));
+        }
+        return this;
+    };
+
+    Validate.prototype.matches = Validate.prototype.match; // alias to match
+
+    Validate.prototype.noMatch = function(value) {
+        if (this.value === value) {
+            errors.push(msg(messages.noMatch, value, this.key));
+        }
         return this;
     };
 
     Validate.prototype.isAlpha = function() {
-        if(this.value === null || !alphaRegex.test(this.value)) {
-            errors.push(msg(messages.isAlpha, null, this.key)); }
+        if (this.value === null || !alphaRegex.test(this.value)) {
+            errors.push(msg(messages.isAlpha, null, this.key));
+        }
         return this;
     };
 
     Validate.prototype.isNumeric = function() {
-        if(!numericRegex.test(this.value)) {
-            errors.push(msg(messages.isNumeric, null, this.key)); }
+        if (!numericRegex.test(this.value)) {
+            errors.push(msg(messages.isNumeric, null, this.key));
+        }
         return this;
     };
 
     Validate.prototype.isAlphaNumeric = function() {
-        if(this.value === null || !alphaNumericRegex.test(this.value)) {
-            errors.push(msg(messages.isAlphaNumeric, null, this.key)); }
+        if (this.value === null || !alphaNumericRegex.test(this.value)) {
+            errors.push(msg(messages.isAlphaNumeric, null, this.key));
+        }
         return this;
     };
 
     Validate.prototype.isAlphaDash = function() {
-        if(this.value === null || !alphaDashRegex.test(this.value)) {
-            errors.push(msg(messages.isAlphaDash, null, this.key)); }
+        if (this.value === null || !alphaDashRegex.test(this.value)) {
+            errors.push(msg(messages.isAlphaDash, null, this.key));
+        }
         return this;
     };
 
     Validate.prototype.isInteger = function() {
-        if(!integerRegex.test(this.value)) {
-            errors.push(msg(messages.isInteger, null, this.key)); }
+        if (!integerRegex.test(this.value)) {
+            errors.push(msg(messages.isInteger, null, this.key));
+        }
         return this;
     };
 
     Validate.prototype.isHex = function() {
-        if(!hexRegex.test(this.value)) {
-            errors.push(msg(messages.hexRegex, null, this.key)); }
+        if (!hexRegex.test(this.value)) {
+            errors.push(msg(messages.hexRegex, null, this.key));
+        }
         return this;
     };
 
     Validate.prototype.isBase64 = function() {
-        if(!base64Regex.test(this.value)) {
-            errors.push(msg(messages.isBase64, null, this.key)); }
+        if (!base64Regex.test(this.value)) {
+            errors.push(msg(messages.isBase64, null, this.key));
+        }
         return this;
     };
 
     Validate.prototype.isIP = function() {
-        if(!ipRegex.test(this.value)) {
-            errors.push(msg(messages.isIP, null, this.key)); }
+        if (!ipRegex.test(this.value)) {
+            errors.push(msg(messages.isIP, null, this.key));
+        }
         return this;
     };
 
     Validate.prototype.isEmail = function() {
-        if(!emailRegex.test(this.value)) {
-            errors.push(msg(messages.isEmail, null, this.key)); }
+        if (!emailRegex.test(this.value)) {
+            errors.push(msg(messages.isEmail, null, this.key));
+        }
         return this;
     };
 
     Validate.prototype.isUrl = function() {
-        if(!urlRegex.test(this.value)) {
-            errors.push(msg(messages.isUrl, null, this.key)); }
+        if (!urlRegex.test(this.value)) {
+            errors.push(msg(messages.isUrl, null, this.key));
+        }
         return this;
     };
 
     Validate.prototype.noWhitespace = function() {
         if(this.value === null || whitespaceRegex.test(this.value)) {
-            errors.push(msg(messages.noWhitespace, null, this.key)); }
+            errors.push(msg(messages.noWhitespace, null, this.key));
+        }
         return this;
     };
 

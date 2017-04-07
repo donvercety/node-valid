@@ -28,6 +28,10 @@ var ass = new assert(), check = ass.check;
 check(v.validate(age).min(16).isValid(), 'min');
 check(v.validate(age).max(56).isValid(), 'max');
 
+// exact match test
+check(v.validate(age).min(18).isValid(), 'min');
+check(v.validate(age).max(18).isValid(), 'max');
+
 check(v.validate(age).min(21).isValid() === false, 'min');
 check(v.validate(age).max(11).isValid() === false, 'max');
 
@@ -39,8 +43,15 @@ check(v.validate(user).minLength(18).isValid() === false, 'minLength');
 check(v.validate(crazy).maxLength(11).isValid() === false, 'minLength');
 check(v.validate(phone).exactLength(6).isValid() === false, 'exactLength');
 
+check(v.validate(user).match('superuser').isValid(), 'match');
+check(v.validate(user).match('megauser').isValid() === false, 'match');
+
+// test alias
 check(v.validate(user).matches('superuser').isValid(), 'matches');
 check(v.validate(user).matches('megauser').isValid() === false, 'matches');
+
+check(v.validate(user).noMatch('superuserX').isValid(), 'noMatch');
+check(v.validate(user).noMatch('superuser').isValid() === false, 'noMatch');
 
 check(v.validate(user).isAlpha().isValid(), 'isAlpha');
 check(v.validate(phone).isNumeric().isValid(), 'isNumeric');
@@ -71,6 +82,7 @@ check(v.validate(page).isEmail().isValid() === false, 'isEmail');
 check(v.validate('n@ai').isEmail().isValid() === false, 'isEmail');
 
 console.log(ass.getStatistics());
+console.log(ass.getFailed());
 
 
 // console.log('Extra tests, for error reporting');
@@ -88,5 +100,6 @@ console.log(ass.getStatistics());
 // v.validate(phone, 'phone').exactLength(6);
 // v.validate(age, 'age').min(21);
 // v.validate(age, 'age').max(11);
+// v.validate(user).noMatch('superuser');
 // v.isValid();
 // console.log(v.getErrors());
