@@ -80,7 +80,8 @@ module.exports = (function() {
             isEmail: '{1} must contain a valid email address',
             isUrl: '{1} must contain a valid URL',
 
-            noWhitespace: 'must not use whitespace character in {1}'
+            noWhitespace: 'must not use whitespace character in {1}',
+            isJson: '{1} is not a valid JSON string'
         };
 
         this.value = null;
@@ -292,6 +293,15 @@ module.exports = (function() {
     Validate.prototype.noWhitespace = function() {
         if(this.value === null || whitespaceRegex.test(this.value)) {
             this.errors.push(msg(this.messages.noWhitespace, null, this.key));
+        }
+        return this;
+    };
+
+    Validate.prototype.isJson = function() {
+        try {
+            JSON.parse(this.value);
+        } catch (e) {
+            this.errors.push(msg(this.messages.isJson, null, this.key));
         }
         return this;
     };
