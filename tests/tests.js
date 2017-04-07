@@ -50,8 +50,11 @@ check(v.validate(user).match('megauser').isValid() === false, 'match');
 check(v.validate(user).matches('superuser').isValid(), 'matches');
 check(v.validate(user).matches('megauser').isValid() === false, 'matches');
 
+check(v.validate(user).matches(['superuser', 'megauser']).isValid(), 'matches array');
+
 check(v.validate(user).noMatch('superuserX').isValid(), 'noMatch');
 check(v.validate(user).noMatch('superuser').isValid() === false, 'noMatch');
+check(v.validate(user).noMatch(['superuserX', 'megauser']).isValid(), 'noMatch array');
 
 check(v.validate(user).isAlpha().isValid(), 'isAlpha');
 check(v.validate(phone).isNumeric().isValid(), 'isNumeric');
@@ -84,7 +87,6 @@ check(v.validate('n@ai').isEmail().isValid() === false, 'isEmail');
 console.log(ass.getStatistics());
 console.log(ass.getFailed());
 
-
 // console.log('Extra tests, for error reporting');
 // v.validate(phone).isIP();
 // v.validate(pass).isEmail();
@@ -101,5 +103,6 @@ console.log(ass.getFailed());
 // v.validate(age, 'age').min(21);
 // v.validate(age, 'age').max(11);
 // v.validate(user).noMatch('superuser');
+// v.validate(user).noMatch(['superuser', 'megauser']);
 // v.isValid();
 // console.log(v.getErrors());
