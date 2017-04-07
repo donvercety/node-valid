@@ -38,7 +38,7 @@ if(v.isValid()) {
 - minLength(val)
 - exactLength(val)
 - required()
-- match(val | array) alias matches(val | array);
+- match(val | array) alias for matches(val | array);
 - noMatch(val | array),
 - isAlpha()
 - isNumeric()
@@ -87,7 +87,7 @@ Methods that use both `{0}` and `{1}`, all ohter methods use only `{1}`.
 - maxLength(val)
 - minLength(val)
 - exactLength(val)
-- match(val | array) alias matches(val | array);
+- match(val | array) alias for matches(val | array);
 - noMatch(val | array),
 
 
