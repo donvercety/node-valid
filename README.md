@@ -87,7 +87,8 @@ Methods that use both `{0}` and `{1}`, all ohter methods use only `{1}`.
 - maxLength(val)
 - minLength(val)
 - exactLength(val)
-- matches(val)
+- match(val | array) alias matches(val | array);
+- noMatch(val | array),
 
 
 Or simply, methods that use both, are methods that have a `val` parameter.
