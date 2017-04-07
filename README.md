@@ -77,7 +77,7 @@ v.setMsg('maxLength', new_msg);
 // new msg: {1} value must must be less than {0}
 ```
 
-You can change all error messages for each method, just by adding as first parameter it's name and as second the new message. The characters `{0}` will be replaced with the validation value and `{1}` with the `field_name` that you specify in the `validate()` method as second parameter.
+You can change all error messages for each method, just by adding as first parameter it's name and as second the new message. The characters `{0}` will be replaced with the validation value and `{1}` with the `field_name` that you specify in the `validate()` method as second parameter. For `match()` and `noMatch()` there are two different strings depending on the matched value. If you want to change the string for array matching just add **Arr** to the rule name ex.`noMatchArray`.
 
 Methods that use both `{0}` and `{1}`, all ohter methods use only `{1}`.
 

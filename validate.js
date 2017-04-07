@@ -63,8 +63,10 @@ module.exports = (function() {
             exactLength: '{1} must be exactly {0} characters in length',
 
             required: 'required {1} is empty or undefined',
-            match: '{1} does not match any of ({0})',
+            match: '{1} does not match: {0}',
+            matchArray: '{1} does not match any of: {0}',
             noMatch: '{1} must not match: {0}',
+            noMatchArray: '{1} must not match any of: {0}',
 
             isAlpha: '{1} must contain only alphabetical characters',
             isNumeric: '{1} must contain only numbers',
@@ -188,7 +190,7 @@ module.exports = (function() {
     Validate.prototype.match = function(value) {
         if (isArray(value)) {
             if (value.indexOf(this.value) === -1) {
-                this.errors.push(msg(this.messages.match, value.toString(), this.key));
+                this.errors.push(msg(this.messages.matchArray, value.toString(), this.key));
             }
 
         } else {
@@ -205,7 +207,7 @@ module.exports = (function() {
     Validate.prototype.noMatch = function(value) {
         if (isArray(value)) {
             if (value.indexOf(this.value) !== -1) {
-                this.errors.push(msg(this.messages.match, value.toString(), this.key));
+                this.errors.push(msg(this.messages.noMatchArray, value.toString(), this.key));
             }
 
         } else {

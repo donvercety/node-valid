@@ -105,5 +105,8 @@ v.validate(age, 'age').min(21);
 v.validate(age, 'age').max(11);
 v.validate(user).noMatch('superuser');
 v.validate(user).noMatch(['superuser', 'megauser']);
+v.validate(user).noMatch('superuser');
+v.validate(user).match(['superuser2', 'megauser']);
+v.validate(user).match('superuser2');
 v.isValid();
 console.log(v.getErrors());
