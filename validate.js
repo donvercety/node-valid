@@ -137,7 +137,7 @@ module.exports = (function() {
     // :: Validators
 
     Validate.prototype.max = function(value) {
-        this.isInteger(value);
+        this.isNumeric(value);
         if (this.value > value) {
             this.errors.push(msg(this.messages.max, value, this.key));
         }
@@ -145,7 +145,7 @@ module.exports = (function() {
     };
 
     Validate.prototype.min = function(value) {
-        this.isInteger(value);
+        this.isNumeric(value);
         if (this.value < value) {
             this.errors.push(msg(this.messages.min, value, this.key));
         }
@@ -153,7 +153,7 @@ module.exports = (function() {
     };
 
     Validate.prototype.exact = function(value) {
-        this.isInteger(value);
+        this.isNumeric(value);
         if (this.value == value) {
             this.errors.push(msg(this.messages.exact, value, this.key));
         }
